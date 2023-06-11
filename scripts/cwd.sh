@@ -15,8 +15,7 @@ getPaneDir() {
 main() {
   path=$(getPaneDir)
 
-  # change '/home/user' to '~'
-  cwd="${path/"$HOME"/'~'}"
+  cwd=$(sed "s:\([^/\.]\)[^/]*/:\1/:g" <<< ${path/"$HOME"/\~})
 
   echo "$cwd"
 }
